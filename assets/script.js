@@ -20,38 +20,51 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-const banner =document.querySelector('#banner');
-
-console.dir(banner);
-const arrows =[...document.querySelectorAll('.arrow')];
-console.log(arrows)let image =1
-arrows.forEach(e => {
-	e.addEventListener('click',function(){
-		console.dir( e);
-		
-		if(e.className=='arrow arrow_right'){
-			banner.children[2].src=slides[image].src;
-		banner.children[3].innerHTML=slides[image].tagLine;
-		image++
-		
-
-		}
-		 if(e.className=='arrow arrow_left'){
-		
-			
-			banner.children[2].src=slides[image].src;
-				banner.children[3].innerHTML=slides[image].tagLine;
-				image--;
-		}
-		
-		}
-	
-	)
-
-	
-});
-
 const bulletpoint =[...document.querySelectorAll('.dot')];
 console.log(bulletpoint);
 
 console.log(slides);
+const banner =document.querySelector('#banner');
+
+console.dir(banner);
+const arrows =[...document.querySelectorAll('.arrow')];
+console.log(arrows);
+arrows.forEach(e => {
+	let image=1
+	if(e.className=='arrow arrow_left'){
+		 image=3
+	}
+	
+	const slidesReverse = slides.reverse();
+	console.log(slidesReverse);
+	e.addEventListener('click',function(){
+		console.dir( e);
+		
+		
+		if(e.className=='arrow arrow_right'){
+			banner.children[2].src=slides[image].src;
+		banner.children[3].innerHTML=slides[image].tagLine;
+		image+=1
+		if(image>=slides.length){
+			image=0
+		}
+		}
+		 if(e.className=='arrow arrow_left'){
+				
+				banner.children[2].src=slides[image].src;
+				banner.children[3].innerHTML=slides[image].tagLine;
+				image-=1
+				if(image<0){
+					image=slides.length-1
+					console.log(image);
+				}
+		}
+		}
+	
+	)
+bulletpoint.forEach(bullet =>{
+	console.log(bullet);
+})
+	
+});
+

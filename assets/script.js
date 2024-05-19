@@ -1,7 +1,7 @@
 const slides = [
 	{ 
 		"src":'http://127.0.0.1:5501/assets/images/slideshow/slide1.jpg',
-		"image":"slide1.jpg",
+		"image":"/assets/images/slideshow/slide1.jpg",
 		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
@@ -24,47 +24,57 @@ const bulletpoint =[...document.querySelectorAll('.dot')];
 console.log(bulletpoint);
 
 console.log(slides);
-const banner =document.querySelector('#banner');
+const bannerimg =document.querySelector('.banner-img');
+console.dir(bannerimg);
+const tagimg =document.querySelector('#banner p');
+console.log(tagimg);
 
-console.dir(banner);
-const arrows =[...document.querySelectorAll('.arrow')];
-console.log(arrows);
-arrows.forEach(e => {
-	let image=1
-	if(e.className=='arrow arrow_left'){
-		 image=3
-	}
+const arrowright =document.querySelector('.arrow_right');
+console.log(arrowright);
+const arrowleft =document.querySelector('.arrow_left');
+
+	let image=0
 	
-	const slidesReverse = slides.reverse();
-	console.log(slidesReverse);
-	e.addEventListener('click',function(){
-		console.dir( e);
-		
-		
-		if(e.className=='arrow arrow_right'){
-			banner.children[2].src=slides[image].src;
-		banner.children[3].innerHTML=slides[image].tagLine;
+	
+	
+	arrowright.addEventListener('click',function(){
+		console.dir( arrowright);
 		image+=1
+		
 		if(image>=slides.length){
 			image=0
 		}
+		
+		
+			//bannerimg.src=slides[image].src;
+			//console.dir(banner[children[2]].src);
+			bannerimg.src=slides[image].src	
+			tagimg.innerHTML=slides[image].tagLine;
+	})
+
+	arrowleft.addEventListener('click',function(){
+		console.log(arrowleft);
+		image-=1
+		if(image<0){
+			image=slides.length-1
+			console.log(image);
 		}
-		 if(e.className=='arrow arrow_left'){
+		bannerimg.src=slides[image].src;
+		tagimg.innerHTML=slides[image].tagLine;
+
+
+	})
+
+	bulletpoint.forEach(bullet =>{
+		console.log(bullet);
+	})
+
+		
+		 
 				
-				banner.children[2].src=slides[image].src;
-				banner.children[3].innerHTML=slides[image].tagLine;
-				image-=1
-				if(image<0){
-					image=slides.length-1
-					console.log(image);
-				}
-		}
-		}
+		
 	
-	)
-bulletpoint.forEach(bullet =>{
-	console.log(bullet);
-})
 	
-});
+	
+
 
